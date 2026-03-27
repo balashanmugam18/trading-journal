@@ -5,6 +5,7 @@ import com.trading.journal.model.TradeResponseList;
 import com.trading.journal.service.TradeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -28,7 +29,7 @@ public class TradeController {
 
     @Operation(summary = "Endpoint to add new trade record", description = "This endpoint will be used to add new trade.", operationId = "trade-journal")
     @PostMapping
-    public ResponseEntity<String> addTrade(@RequestBody TradeRequest tradeRequest) {
+    public ResponseEntity<String> addTrade(@Valid @RequestBody TradeRequest tradeRequest) {
         String response = tradeService.addTrade(tradeRequest);
         return ResponseEntity.ok().body(response);
     }

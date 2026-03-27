@@ -8,7 +8,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.context.annotation.Bean;
 
 @Configuration
-public class WebClientConfig {
+public class WebSecurityConfig {
 
     @Autowired
     private Environment env;
@@ -19,7 +19,7 @@ public class WebClientConfig {
     };
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http){
         http.authorizeHttpRequests(authz -> authz
                         .requestMatchers(SWAGGER_WHITELIST).permitAll()
                         .requestMatchers("/api/trades/**").permitAll()
